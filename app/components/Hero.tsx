@@ -1,5 +1,4 @@
 "use client";
-
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import Image from "next/image";
@@ -12,6 +11,7 @@ export default function Hero() {
   });
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "200%"]);
+  const ufoY = useTransform(scrollYProgress, [0, 1], ["-50%", "50%"]); // Adjust the range as needed
 
   return (
     <div
@@ -35,9 +35,12 @@ export default function Hero() {
           y: backgroundY,
         }}
       />
-      <div className="absolute inset-0 z-20">
+      <motion.div
+        className="absolute inset-0 z-20"
+        style={{ translateY: ufoY }}
+      >
         <Image src="/ufo.png" alt="img" width={500} height={500} />
-      </div>
+      </motion.div>
       <div
         className="absolute inset-0 z-20"
         style={{
